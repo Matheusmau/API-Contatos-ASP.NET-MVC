@@ -1,6 +1,14 @@
+using dioMVC.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllersWithViews();
+
+// conexão com meu banco de dados
+builder.Services.AddDbContext<AgendaContext> (options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoPadrao")));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
